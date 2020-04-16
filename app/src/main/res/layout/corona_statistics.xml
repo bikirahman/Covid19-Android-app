@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/confirmed_cases_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="start"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/new_added_case"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#FF0000"
+            android:text="+726" />
+
+        <TextView
+            android:id="@+id/total_confirmed_cases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#8B0000"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="4314" />
+
+        <TextView
+            android:id="@+id/confirmed_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#800000"
+            android:text="Confirmed"    />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/death_cases_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
+        android:layout_toRightOf="@id/confirmed_cases_layout"
+        android:orientation="vertical"  >
+
+        <TextView
+            android:id="@+id/new_death_case"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#000000"
+            android:text="+19" />
+
+        <TextView
+            android:id="@+id/total_death_cases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="118" />
+
+        <TextView
+            android:id="@+id/death_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#000000"
+            android:text="Deaths"    />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/recovered_case_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="end"
+        android:layout_toRightOf="@id/death_cases_layout"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/new_recovered_case"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="+99"
+            android:textColor="#00FF00" />
+
+        <TextView
+            android:id="@+id/total_recovered_cases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="328"
+            android:textColor="#008000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/recovered_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Recovered"
+            android:textColor="#008000" />
+
+    </LinearLayout>
+
+</RelativeLayout>

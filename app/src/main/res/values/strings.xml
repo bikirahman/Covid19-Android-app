@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Covid Info</string>
+    <string name="tab_text_1">Home</string>
+    <string name="tab_text_2">Breaking</string>
+    <string name="tab_text_3">Informations</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">NE Corona Info</string>
+    <string name="slide_1_desc">An app to information you with latest covid-19 news, statistics of your locality</string>
+
+    <string name="slide_2_title">Get news at your fingure tip</string>
+    <string name="slide_2_desc">You can get latest breaking news, helplines, other important news and many more</string>
+
+    <string name="slide_3_title">Help section</string>
+    <string name="slide_3_desc">In help section you get information to prevent from Corona, near by Corona test centre</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

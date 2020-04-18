@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -130,7 +131,8 @@ public class InformationFragment extends Fragment {
 
     //----------------------------------------------------
     // method to get the information data
-    private void getInformationData(String flag, String data) {
+    private void getInformationData(String flag, String data, String helpline_file) {
+        Log.e("TAG", "getInformationData: "+helpline_file);
        /* contentTypeList.add(0);
         contentTypeList.add(0);
         contentTypeList.add(1);
@@ -144,10 +146,15 @@ public class InformationFragment extends Fragment {
         contentList.add("aaa");*/
         if (flag.equals("Text")) {
             contentTypeList.add(0);
-            contentList.add(data);
+            if (data != null) {
+                contentList.add(data);
+            }
+
         } else if (flag.equals("Image")) {
             contentTypeList.add(1);
-            contentList.add(data);
+            if (helpline_file != null) {
+                contentList.add(helpline_file);
+            }
         }
     }
     //----------------------------------------------------
@@ -184,8 +191,10 @@ public class InformationFragment extends Fragment {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String type = jsonArray.getJSONObject(i).get("type").toString();
                         String title = jsonArray.getJSONObject(i).get("title").toString();
+                        String help_line_file = jsonArray.getJSONObject(i).get("helpline_file").toString();
+                        Log.e("TAG", "onResponse: "+help_line_file);
 
-                        getInformationData(type, title);
+                        getInformationData(type, title, help_line_file);
                         view.setAdapter(new InformationAdapter(mContext, contentTypeList, contentList));
                     }
 

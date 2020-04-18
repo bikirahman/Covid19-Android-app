@@ -66,6 +66,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private int total_case_count = 0;
+    private int total_death_count = 0;
+    private int total_recover_count = 0;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -147,6 +151,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         newRecoveredCase = view.findViewById(R.id.new_recovered_case);
         totalRecoveredCase = view.findViewById(R.id.total_recovered_cases);
         //-------------------------------------------------------------------------
+
 
         // now implement the google map structure
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -309,10 +314,17 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                         String created_at = jsonArray.getJSONObject(i).get("created_at").toString();
                         String updated_at = jsonArray.getJSONObject(i).get("updated_at").toString();
 
-                        Log.e("tags", "onResponse: " + id + " " + state + " " + total_death + " " + updated_at);
+                        /*Log.e("tags", "onResponse: " + id + " " + state + " " + total_death + " " + updated_at);*/
+                        total_case_count = total_case_count + Integer.parseInt(total_affected);
+                        total_death_count = total_death_count + Integer.parseInt(total_death);
+                        total_recover_count = total_recover_count + Integer.parseInt(total_recovered);
 
                         addTheMarker(latitude, longitude, district, total_affected, total_death, total_recovered);
                     }
+
+                    totalCases.setText(String.valueOf(total_case_count));
+                    totalDeathCase.setText(String.valueOf(total_death_count));
+                    totalRecoveredCase.setText(String.valueOf(total_recover_count));
 
 
                 } catch (IOException | JSONException e) {
@@ -361,7 +373,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     public void addTheMarker(String Lat, String lon, String district, String total_affected, String total_death, String total_recovered) {
         // String[] latlong = "26.1805978,91.753943".split(",");
         //String latlong[] = passLocation;
-        Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+//        Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
 
 
         double latitude = Double.parseDouble(Lat);
@@ -384,7 +396,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         gmp.setInfoWindowAdapter(customInfoWindowGoogleMap);
         Marker marker = gmp.addMarker(markerOptions);
         marker.setTag(infoWindowData);
-        marker.showInfoWindow();
+        gmp.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                marker.showInfoWindow();
+                return false;
+            }
+        });
+
 
         /*
         InfoWindowData info = new InfoWindowData();
@@ -399,7 +418,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         Marker m = mMap.addMarker(markerOptions);
         m.setTag(info);
         m.showInfoWindow();
-
         mMap.moveCamera(CameraUpdateFactory.newLatLng(snowqualmie));
         */
         gmp.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 7));

@@ -31,4 +31,5 @@
     </array>
 
     <color name="sign_up_action_bar_color">#ffffff</color>
+    <color name="tab_colour">#DCDCDC</color>
 </resources>

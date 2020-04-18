@@ -1,6 +1,7 @@
 package com.anupom.covidinfo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
 
         TabLayout tabs = findViewById(R.id.tabs);
+        tabs.setSelectedTabIndicatorColor(getResources().getColor(R.color.tab_colour));
         tabs.setupWithViewPager(viewPager);
 
         //----------------------------------------------------------

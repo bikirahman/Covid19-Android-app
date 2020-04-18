@@ -19,26 +19,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="#FF0000"
-            android:text="+726" />
+            android:text=" "
+            android:textColor="#FF0000" />
 
         <TextView
             android:id="@+id/total_confirmed_cases"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:text=" "
             android:textColor="#8B0000"
-            android:textStyle="bold"
             android:textSize="20sp"
-            android:text="4314" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/confirmed_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="#800000"
-            android:text="Confirmed"    />
+            android:text="Confirmed"
+            android:textColor="#800000" />
 
     </LinearLayout>
 
@@ -49,35 +49,35 @@
         android:layout_marginLeft="70dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:gravity="center_horizontal"
         android:layout_toRightOf="@id/confirmed_cases_layout"
-        android:orientation="vertical"  >
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/new_death_case"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="#000000"
-            android:text="+19" />
+            android:text=" "
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/total_death_cases"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:text=" "
             android:textColor="#000000"
-            android:textStyle="bold"
             android:textSize="20sp"
-            android:text="118" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/death_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="#000000"
-            android:text="Deaths"    />
+            android:text="Deaths"
+            android:textColor="#000000" />
 
     </LinearLayout>
 
@@ -88,8 +88,8 @@
         android:layout_marginLeft="70dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:gravity="end"
         android:layout_toRightOf="@id/death_cases_layout"
+        android:gravity="end"
         android:orientation="vertical">
 
         <TextView
@@ -97,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="+99"
+            android:text=" "
             android:textColor="#00FF00" />
 
         <TextView
@@ -105,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="328"
+            android:text=" "
             android:textColor="#008000"
             android:textSize="20sp"
             android:textStyle="bold" />

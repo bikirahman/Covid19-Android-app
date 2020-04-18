@@ -22,20 +22,35 @@
             android:layout_below="@id/coronaStats"
             android:layout_marginTop="10dp" />
 
+        <View
+            android:id="@+id/ViewBar"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/mapLayout"
+            android:layout_marginTop="5dp"
+            android:background="#047bd5" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/headline_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/mapLayout"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_below="@id/ViewBar"
+            android:layout_marginTop="5dp" />
+
+        <View
+            android:id="@+id/ViewBar2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/headline_recyclerView"
+            android:layout_marginTop="5dp"
+            android:background="#047bd5" />
 
         <include
             android:id="@+id/chartLayout"
             layout="@layout/chart_layout"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:layout_below="@id/headline_recyclerView"
+            android:layout_below="@id/ViewBar2"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp" />
 

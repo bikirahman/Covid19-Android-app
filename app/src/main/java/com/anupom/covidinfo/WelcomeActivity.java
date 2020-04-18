@@ -63,7 +63,7 @@ public class WelcomeActivity extends AppCompatActivity {
         }
         //-------------------------------------------------------------------------
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_welcome);
         //--------------------------------------------------------------
         if (intentValue == null) {
@@ -82,8 +82,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     Log.e("Share app:", "Share");
                     Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                     shareIntent.setType("text/plain");
-                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Insert Subject here");
-                    String app_url = " https://play.google.com/store/apps/details?id=covid19.android.application";
+                    String app_url = "Please try again later when the app download link is available";
                     shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, app_url);
                     startActivity(Intent.createChooser(shareIntent, "Share via"));
                 }

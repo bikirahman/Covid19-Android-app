@@ -36,22 +36,18 @@ public class WelcomeActivity extends AppCompatActivity {
     private int[] layouts;
     private Button btnSkip, btnNext;
     private PrefManager prefManager;
-
     private String intentValue = null;
-
     private LinearLayout shareAppLayout;
     private TextView companyInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //-------------------------------------------------------------------------
         // checking for any intent data
         if (getIntent().getStringExtra("info_click") != null) {
             intentValue = getIntent().getStringExtra("info_click");
         }
-
         // checking for activity launch.
         if (intentValue == null) {
             // Checking for first time launch - before calling setContentView()
@@ -70,7 +66,6 @@ public class WelcomeActivity extends AppCompatActivity {
             // hide the share app button if the welcome screen shown for the first time
             shareAppLayout = findViewById(R.id.share_app);
             shareAppLayout.setVisibility(View.GONE);
-
             companyInfo = findViewById(R.id.companyInfo);
             companyInfo.setVisibility(View.GONE);
         } else {

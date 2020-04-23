@@ -189,12 +189,15 @@ public class InformationFragment extends Fragment {
                     String responseData = response.body().string();
                     JSONArray jsonArray = new JSONArray(responseData);
                     for (int i = 0; i < jsonArray.length(); i++) {
+                        String id = jsonArray.getJSONObject(i).get("id").toString();
                         String type = jsonArray.getJSONObject(i).get("type").toString();
                         String title = jsonArray.getJSONObject(i).get("title").toString();
                         String help_line_file = jsonArray.getJSONObject(i).get("helpline_file").toString();
+                        String details = jsonArray.getJSONObject(i).get("details").toString();
                         Log.e("TAG", "onResponse: "+help_line_file);
+                        title=title+" "+details;
 
-                        getInformationData(type, title, help_line_file);
+                        getInformationData(type, title, id+"/"+help_line_file);
                         view.setAdapter(new InformationAdapter(mContext, contentTypeList, contentList));
                     }
 

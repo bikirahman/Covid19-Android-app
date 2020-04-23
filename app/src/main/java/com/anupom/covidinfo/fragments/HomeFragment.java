@@ -1,5 +1,6 @@
 package com.anupom.covidinfo.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -42,7 +43,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 import okhttp3.ResponseBody;
@@ -73,6 +77,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    ArrayList<Float> graphX = new ArrayList<>();
+    ArrayList<Float> graphY = new ArrayList<>();
 
     private RecyclerView headlineRecyclerView;
 
@@ -167,7 +174,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
         // initialize the line chart
         lineChart = view.findViewById(R.id.lineChart);
-        setUpChart();
+        getGraphApiCall();
+
 
         return view;
     }
@@ -245,11 +253,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     }
 
     // get the graph data
-    private ArrayList<Entry> getLineGraphData(/*ArrayList<Integer> inftectedValues*/) {
+
+    private ArrayList<Entry> getLineGraphData() {
 
         ArrayList<Entry> lineEntries = new ArrayList<>();
-        lineEntries.add(new Entry(1, 10));
-        lineEntries.add(new Entry(2, 30));
+        for (int i = 0; i < graphY.size(); i++) {
+            lineEntries.add(new Entry(graphX.get(i), graphY.get(i)));
+        }
+
+        /*lineEntries.add(new Entry(2, 30));
         lineEntries.add(new Entry(3, 60));
         lineEntries.add(new Entry(4, 50));
         lineEntries.add(new Entry(5, 70));
@@ -259,7 +271,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         lineEntries.add(new Entry(9, 289));
         lineEntries.add(new Entry(10, 774));
         lineEntries.add(new Entry(11, 916));
-        lineEntries.add(new Entry(12, 725));
+        lineEntries.add(new Entry(12, 725));*/
 
         return lineEntries;
     }
@@ -370,10 +382,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         });
     }
 
-    public void addTheMarker(String Lat, String lon, String district, String total_affected, String total_death, String total_recovered) {
+    private void addTheMarker(String Lat, String lon, String district, String total_affected, String total_death, String total_recovered) {
         // String[] latlong = "26.1805978,91.753943".split(",");
         //String latlong[] = passLocation;
-//        Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+        //  Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
 
 
         double latitude = Double.parseDouble(Lat);
@@ -423,6 +435,60 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         gmp.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 7));
         gmp.addMarker(markerOptions);
 
+    }
+
+    private void getGraphApiCall() {
+        Call<ResponseBody> makeGraphCall = RetrofitClient
+                .getInstance()
+                .getApi()
+                .getGraphCall("WxKoI4fsqouZAwJhuhpKoo6ooKx33kkeFH47KZln2BZSIm5dgW6b8be9zvOu");
+
+        makeGraphCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    String responseBody = response.body().string();
+                    JSONArray jsonArray = new JSONArray(responseBody);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        String id = jsonArray.getJSONObject(i).get("id").toString();
+                        String total_affected = jsonArray.getJSONObject(i).get("total_affected").toString();
+                        String total_death = jsonArray.getJSONObject(i).get("total_death").toString();
+                        String total_recovered = jsonArray.getJSONObject(i).get("total_recovered").toString();
+                        String created_at = jsonArray.getJSONObject(i).get("created_at").toString();
+                        String updated_at = jsonArray.getJSONObject(i).get("updated_at").toString();
+                        Log.e("graphData", "onResponse: " + total_affected);
+
+                        String[] arrOfStr = created_at.split(" ", 2);
+                        Log.e("date", "onResponse: " + arrOfStr[0]);
+
+                        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+                        Date date = formatter.parse(arrOfStr[0]);
+                        assert date != null;
+                        String month = String.valueOf(date.getMonth());
+                        String dateOfMonth = String.valueOf(date.getDay());
+                        Log.e("month", "onResponse: " + dateOfMonth);
+
+                        /*getLineGraphData(Integer.parseInt(created_at), Integer.parseInt(total_affected));*/
+                        //graphX.add(Float.parseFloat(dateOfMonth));
+                        graphX.add(Float.parseFloat(String.valueOf(22.0)));
+                        graphX.add(Float.parseFloat(String.valueOf(23.0)));
+                        graphX.add(Float.parseFloat(String.valueOf(24.0)));
+                        graphY.add(Float.parseFloat(total_affected));
+                        Log.e("testGraph", "onResponse: " + graphY.get(i) + " " + graphX);
+                    }
+                    setUpChart();
+
+                } catch (IOException | JSONException | ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
     }
 
     class CustomInfoWindowGoogleMap implements GoogleMap.InfoWindowAdapter {

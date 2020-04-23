@@ -32,4 +32,9 @@ public interface Api {
             @Query("api_token") String tokenId
     );
 
+    @GET("api/graphdata")
+    Call<ResponseBody> getGraphCall(
+            @Query("api_token") String tokenId
+    );
+
 }

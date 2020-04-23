@@ -81,7 +81,7 @@ public class InformationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 String imageLink = informationContent.get(position);
                 Log.e("link", "" + imageLink);
                 //Picasso.get().load(R.drawable.logo).fit().into(imageViewHolder.getInformationImage());
-                Picasso.get().load("http://api.indigierp.com/helpline_files/7/" + imageLink).fit().into(imageViewHolder.getInformationImage());
+                Picasso.get().load("http://api.indigierp.com/helpline_files/" + imageLink).fit().into(imageViewHolder.getInformationImage());
                 //imageViewHolder.getInformationImage().setImageResource(/*R.drawable.welcome_bg*/));
                 break;
         }
